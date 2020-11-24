@@ -1,5 +1,6 @@
 import React from "react"
-import {Carousel, Col} from "react-bootstrap"
+import { Carousel, Col } from "react-bootstrap"
+import { Link, withRouter } from "react-router-dom"
 
 class Gallery extends React.Component {
   state = {
@@ -23,7 +24,7 @@ class Gallery extends React.Component {
     if (response.ok) {
       let result = await response.json() //search object
       console.log(result)
-      this.setState({movies: result.Search})
+      this.setState({ movies: result.Search })
     } else {
       alert("something went wrong")
     }
@@ -31,26 +32,49 @@ class Gallery extends React.Component {
 
   render() {
     return (
-        <Col xs="4" >
-            <Carousel >
-            
-              {this.state.movies.map((movie) => (
-                <Carousel.Item key={movie.imdbID}>
-                  <img
-                    className="d-block w-100"
-                    style={{objectFit:"cover", width: 20 + "vw", height: 35 + "vw", objectPosition: "top"}}
-                    src={movie.Poster}
-                    alt="First slide"
-                  />
-                  <Carousel.Caption style={{width: 20 + "vw",
-background: "linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(0,0,0,1) 80%)", position: "relative", left: "0", bottom: 6 + "vw"}}>
-                    <h3 style={{overflow: "hidden", whiteSpace:"nowrap", textOverflow:"ellipsis"}}>{movie.Title}</h3>
-                    <p>{movie.Year} </p>
-                  </Carousel.Caption>
-                </Carousel.Item>
-              ))}
-            </Carousel>
-          </Col>
+      <Col xs="4">
+        <Carousel>
+          {this.state.movies.map((movie) => (
+            <Carousel.Item key={movie.imdbID}>
+              <img
+                className="d-block w-100"
+                style={{
+                  objectFit: "cover",
+                  width: 20 + "vw",
+                  height: 35 + "vw",
+                  objectPosition: "top",
+                }}
+                src={movie.Poster}
+                alt="First slide"
+                onClick={() =>
+                  this.props.history.push("/details/" + movie.imdbID)
+                }
+              />
+              <Carousel.Caption
+                style={{
+                  width: 20 + "vw",
+                  background:
+                    "linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(0,0,0,1) 80%)",
+                  position: "relative",
+                  left: "0",
+                  bottom: 6 + "vw",
+                }}
+              >
+                <h3
+                  style={{
+                    overflow: "hidden",
+                    whiteSpace: "nowrap",
+                    textOverflow: "ellipsis",
+                  }}
+                >
+                  {movie.Title}
+                </h3>
+                <p>{movie.Year} </p>
+              </Carousel.Caption>
+            </Carousel.Item>
+          ))}
+        </Carousel>
+      </Col>
     )
   }
 }
