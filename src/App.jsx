@@ -7,8 +7,8 @@ import Results from "./components/Results"
 import NetflixNavBar from "./components/Navbar"
 
 import Gallery from "./components/Gallery"
-import { Container, Row } from "react-bootstrap"
-import { BrowserRouter as Router, Route } from "react-router-dom"
+import {Container, Row} from "react-bootstrap"
+import {BrowserRouter as Router, Route} from "react-router-dom"
 
 class App extends React.Component {
   state = {
@@ -23,7 +23,7 @@ class App extends React.Component {
     console.log(result)
     let res = await result
     console.log(res)
-    this.setState({ movies: res.Search })
+    this.setState({movies: res.Search})
   }
 
   onChange = (e) => {
@@ -48,18 +48,19 @@ class App extends React.Component {
         <>
           {" "}
           <NetflixNavBar onKeyDown={this.onKeyDown} onChange={this.onChange} />
-          <Header />
+          {/* <Header /> */}
           {/* <CommentList /> */}
           <Container>
-            <h1 style={{ position: "relative", top: 90 + "vh" }}>
+            <h1 style={{position: "relative", top: 90 + "vh"}}>
               Most popular sagas:
             </h1>
             <Row
-              style={{
-                height: 60 + "vh",
-                position: "relative",
-                top: 90 + "vh",
-              }}
+            //   style={{
+            //     height: 60 + "vh",
+            //     position: "relative",
+            //     top: 90 + "vh",
+            //   }
+            // }
             >
               <Route
                 path="/"
@@ -70,7 +71,7 @@ class App extends React.Component {
               <Gallery saga="Star Wars" />
             </Row>
 
-            <Row style={{ position: "relative", top: 110 + "vh" }}>
+            <Row style={{position: "relative", top: 110 + "vh"}}>
               {this.state.movies.length > 0 && <h1>Search Results:</h1>}
 
               <Results results={this.state.movies} />
