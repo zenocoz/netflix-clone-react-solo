@@ -9,6 +9,7 @@ import NetflixNavBar from "./components/Navbar"
 import Gallery from "./components/Gallery"
 import {Container, Row} from "react-bootstrap"
 import {BrowserRouter as Router, Route} from "react-router-dom"
+import Registration from "./components/Registration"
 
 class App extends React.Component {
   state = {
@@ -62,19 +63,17 @@ class App extends React.Component {
             //   }
             // }
             >
-              <Route
-                path="/"
-                exact
-                component={Gallery} /*saga="Harry Potter"}*/
-              />
+              <Gallery saga="Harry Potter" />
               <Gallery saga="Lord of the Rings" />
               <Gallery saga="Star Wars" />
             </Row>
 
             <Row style={{position: "relative", top: 110 + "vh"}}>
               {this.state.movies.length > 0 && <h1>Search Results:</h1>}
-
               <Results results={this.state.movies} />
+            </Row>
+            <Row>
+              <Route path="/registration" exact component={Registration} />
             </Row>
           </Container>
         </>

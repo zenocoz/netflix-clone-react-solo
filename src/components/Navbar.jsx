@@ -1,11 +1,10 @@
 import React from "react"
 
-
 import "../netflix.css"
 import Logo from "../assets/netflix-logo-png-2562.png"
 import SearchBar from "./SearchBar"
-
-import { Navbar } from "react-bootstrap" //why do I need to import all of them?
+import {Navbar, Button} from "react-bootstrap" //why do I need to import all of them?
+import {Link, withRouter} from "react-router-dom"
 
 class NetflixNavBar extends React.Component {
   render() {
@@ -21,7 +20,7 @@ class NetflixNavBar extends React.Component {
           top: 0,
         }}
       >
-        <div className="d-flex" style={{ margin: 1 + "vw" }}>
+        <div className="d-flex" style={{margin: 1 + "vw"}}>
           <svg
             width="1.8vw"
             height="3vh"
@@ -49,7 +48,7 @@ class NetflixNavBar extends React.Component {
 
           <img
             src={Logo}
-            style={{ width: 5.5 + "vw", marginLeft: 1 + "vw" }}
+            style={{width: 5.5 + "vw", marginLeft: 1 + "vw"}}
             alt="NetflixLogo"
           />
         </div>
@@ -64,7 +63,7 @@ class NetflixNavBar extends React.Component {
             width="1.5em"
             height="1.5em"
             viewBox="0 0 16 16"
-            style={{ marginRight: 1 + "vw", marginTop: 0.5 + "vw" }}
+            style={{marginRight: 1 + "vw", marginTop: 0.5 + "vw"}}
             className="bi bi-search"
             fill="currentColor"
             xmlns="http://www.w3.org/2000/svg"
@@ -78,6 +77,11 @@ class NetflixNavBar extends React.Component {
               d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"
             />
           </svg>
+          <Link to="/registration">
+            <Button variant="success" className="mr-3">
+              Registration
+            </Button>
+          </Link>
           <SearchBar
             onKeyDown={this.props.onKeyDown}
             onChange={this.props.onChange}
@@ -87,4 +91,4 @@ class NetflixNavBar extends React.Component {
     )
   }
 }
-export default NetflixNavBar
+export default withRouter(NetflixNavBar)
